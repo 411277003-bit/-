@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vibe Log</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- 頂部導覽列 -->
+    <nav class="navbar">
+        <div class="logo" data-i18n="title">Vibe Log</div>
+        <div class="lang-switcher">
+            <select id="lang-select" onchange="changeLanguage(this.value)">
+                <option value="zh">繁體中文</option>
+                <option value="en">English</option>
+                <option value="fr">Français</option>
+            </select>
+        </div>
+    </nav>
+
+    <!-- 圖片輪播區 -->
+    <header class="carousel-container">
+        <img id="carousel-img" src="https://images.unsplash.com/photo-1499750310107-5fef28a66643?auto=format&fit=crop&w=1200&q=80" alt="Blog Banner">
+        <div class="carousel-overlay">
+            <h1 id="welcome-text" data-i18n="welcome">歡迎來到 Vibe Log</h1>
+        </div>
+        <button class="carousel-btn prev" onclick="prevSlide()">❮</button>
+        <button class="carousel-btn next" onclick="nextSlide()">❯</button>
+    </header>
+
+    <!-- 主要內容區 -->
+    <main class="content-grid">
+        <!-- 左側：最新消息 -->
+        <section class="news-section">
+            <h2 data-i18n="latest">最新消息</h2>
+            <ul class="news-list">
+                <li onclick="openArticle('news1', '2026-05-04')">
+                    <span class="date">2026-05-04</span>
+                    <span data-i18n="news1">新功能上線：多國語言支援！</span>
+                </li>
+                <li onclick="openArticle('news2', '2026-05-01')">
+                    <span class="date">2026-05-01</span>
+                    <span data-i18n="news2">分享：如何拍出充滿 Vibe 的照片</span>
+                </li>
+                <li onclick="openArticle('news3', '2026-04-28')">
+                    <span class="date">2026-04-28</span>
+                    <span data-i18n="news3">五月份閱讀書單推薦</span>
+                </li>
+            </ul>
+        </section>
+
+        <!-- 右側：留言板 -->
+        <section class="comment-section">
+            <h2 data-i18n="comment_title">讀者留言</h2>
+            
+            <form id="comment-form">
+                <input type="text" id="comment-name" placeholder="您的暱稱" required>
+                <textarea id="comment-text" data-i18n-placeholder="placeholder" placeholder="輸入你的想法..." required></textarea>
+                <button type="submit" data-i18n="submit">送出留言</button>
+            </form>
+
+            <div id="comments-list">
+                <!-- 留言將透過 JS 動態生成於此 -->
+            </div>
+        </section>
+    </main>
+
+    <!-- ====== 新增：文章彈出視窗 (Modal) ====== -->
+    <div id="article-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeArticle()" title="關閉">&times;</span>
+            <h2 id="modal-title">文章標題</h2>
+            <p id="modal-date" class="date-tag"></p>
+            <div id="modal-body">文章內容將在這裡顯示...</div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
